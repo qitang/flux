@@ -9,37 +9,37 @@
 
 /**
  * This component operates as a "Controller-View".  It listens for changes in
- * the TodoStore and passes the new data to its children.
+ * the TermStore and passes the new data to its children.
  */
 
 var Footer = require('./Footer.react');
 var Header = require('./Header.react');
 var MainSection = require('./MainSection.react');
 var React = require('react');
-var TodoStore = require('../stores/TodoStore');
+var TermStore = require('../stores/TermStore');
 
 /**
- * Retrieve the current TODO data from the TodoStore
+ * Retrieve the current Term data from the TermStore
  */
-function getTodoState() {
+function getTermState() {
   return {
-    allTodos: TodoStore.getAll(),
-    areAllComplete: TodoStore.areAllComplete()
+    options: TermStore.getAll(),
+    term : ""
   };
 }
 
-var TodoApp = React.createClass({
+var TermApp = React.createClass({
 
   getInitialState: function() {
-    return getTodoState();
+    return getTermState();
   },
 
   componentDidMount: function() {
-    TodoStore.addChangeListener(this._onChange);
+    TermStore.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function() {
-    TodoStore.removeChangeListener(this._onChange);
+    TermStore.removeChangeListener(this._onChange);
   },
 
   /**
@@ -50,21 +50,21 @@ var TodoApp = React.createClass({
       <div>
         <Header />
         <MainSection
-          allTodos={this.state.allTodos}
+          allTerms={this.state.allTerms}
           areAllComplete={this.state.areAllComplete}
         />
-        <Footer allTodos={this.state.allTodos} />
+        <Footer allTerms={this.state.allTerms} />
       </div>
     );
   },
 
   /**
-   * Event handler for 'change' events coming from the TodoStore
+   * Event handler for 'change' events coming from the TermStore
    */
   _onChange: function() {
-    this.setState(getTodoState());
+    this.setState(getTermState());
   }
 
 });
 
-module.exports = TodoApp;
+module.exports = TermApp;

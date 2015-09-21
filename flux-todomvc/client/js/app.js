@@ -1,18 +1,19 @@
-/*
- * Copyright (c) 2014-2015, Facebook, Inc.
+/**
+ * Copyright (c) 2014, Facebook, Inc.
  * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
- *
- * base.css overrides
  */
 
-/**
- * We are not changing from display:none, but rather re-rendering instead.
- * Therefore this needs to be displayed normally by default.
- */
-#todo-list li .edit {
-  display: inline;
-}
+var React = require('react');
+
+// var TodoApp = require('./components/TodoApp.react');
+var SearchApp = require('./components/SearchApp.react');
+
+React.render(
+  <SearchApp />,
+  document.getElementById('todoapp')
+);
+ 
